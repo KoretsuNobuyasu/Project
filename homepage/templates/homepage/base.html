@@ -46,11 +46,14 @@
     </div>
     <div class="container">
         <div class="row">
+            <div class="col-md-2">
+                <li class="list-group-item bg-dark text-white">メニュー</li>
+            </div>
             <div class="col-md-8">
                 {% block content %}
                 {% endblock %}
             </div>
-            <div class="col-md-4">
+            <div class="col-md-2">
                 <ul class="list-group">
                     <li class="list-group-item bg-dark text-white">カテゴリ一覧</li>
                     {% for category in category_list %}
