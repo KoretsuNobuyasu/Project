@@ -1,0 +1,11 @@
+{% extends 'homepage/base.html' %}
+
+{% block content %}
+    <div class="card mb-3">
+        <h2 class="card-header bg-dark text-white">{{ trainingnote.title }}</h2>
+        <div class="card-body">
+            <p>{{ trainingnote.created_at }}, {{ trainingnote.category }}</p>
+            {{ trainingnote.text | linebreaksbr }}
+        </div>
+    </div>
+{% endblock %}
