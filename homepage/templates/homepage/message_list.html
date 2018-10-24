@@ -2,6 +2,17 @@
 
 {% block content %}
     {% for message in message_list %}
-        <h6><a href="#">{{ message.text }}</a></h6>
+        <div class="card mb-3">
+            <div class="card-body">
+                <h4 class="card-title">{{ message.text }}</h4>
+                <h6 class="card-subtitle mb-2 text-muted">{{ message.created_at }}</h6>
+                <p class="card-text">
+                    {{ message.news | linebreaksbr | urlize}}
+                </p>
+            </div>
+        </div>
     {% endfor %}
+
+    {% include 'homepage/page.html' %}
+
 {% endblock %}
