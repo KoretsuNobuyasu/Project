@@ -7,5 +7,17 @@
             <p>{{ trainingnote.created_at }}, {{ trainingnote.category }}</p>
             {{ trainingnote.text | linebreaksbr }}
         </div>
+
     </div>
+    {% for comment in trainingnote.comment_set.all %}
+        <div class="card mb-2">
+            <h8 class="card-header bg-dark text-white">{{ comment.created_at }}</h8>
+            <div class="card-body">
+                <p>{{ comment.name }}</p>
+                {{ comment.text | linebreaksbr }}
+            </div>
+        </div>
+    {% endfor %}
+
+
 {% endblock %}

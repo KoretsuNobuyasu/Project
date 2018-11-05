@@ -8,4 +8,7 @@ urlpatterns = [
     path('category/<int:pk>/',views.CategoryView.as_view(),name='category'),
     path('menu/<int:pk>/',views.MenuView.as_view(),name='menu'),
     path('detail/<int:pk>/',views.DetailView.as_view(),name='detail'),
+    #path('message_detail/<int:pk>',views.DetailView.as_view(),name='message_detail'),
+    path('comment/<int:trainingnote_pk>',views.CommentView.as_view(), name='comment'),
+    #path('message_comment/<int:message_pk>',views.Message_CommentView.as_view(), name='message_comment'),
 ]
