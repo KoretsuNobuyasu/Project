@@ -1,0 +1,10 @@
+{% extends 'trainingnote/base.html' %}
+
+{% block content %}
+    <form action="" method="POST">
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-dark">送信</button>
+        {% csrf_token %}
+    </form>
+
+{% endblock %}

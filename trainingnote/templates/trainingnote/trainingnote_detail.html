@@ -1,0 +1,12 @@
+{% extends 'trainingnote/base.html' %}
+
+{% block content %}
+    <div class="card mb-3">
+        <h2 class="card-header bg-dark text-white">{{ trainingnote.title }}</h2>
+        <div class="card-body">
+            <p>{{ trainingnote.created_at }}</p>
+            {{ trainingnote.text | linebreaksbr }}
+        </div>
+    </div>
+    <a class="btn btn-dark" href="{% url 'trainingnote:comment' trainingnote.pk %}">コメント投稿ページへ</a>
+{% endblock %}
