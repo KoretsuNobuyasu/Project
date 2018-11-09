@@ -1,0 +1,17 @@
+{% extends 'trainingnote/base.html' %}
+
+{% block content %}
+    {% for trainingnote in trainingnote_list %}
+        <div class="card mb-3">
+            <h2 class="card-header bg-dark text-white">{{ trainingnote.title }}</h2>
+            <div class="card-body">
+                <p>{{ trainingnote.created_at }}}</p>
+                {{ trainingnote.text | linebreaksbr}}<br>
+                <a href="{% url 'trainingnote:detail' trainingnote.pk %}" class="btn btn-dark">続きを読む</a>
+            </div>
+        </div>
+    {% endfor %}
+
+    {% include 'trainingnote/page.html' %}
+
+{% endblock %}
