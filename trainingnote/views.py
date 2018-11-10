@@ -6,6 +6,7 @@ from .forms import CommentCreateForm
 from .models import TrainingNote,Comment
 
 
+
 class IndexView(generic.ListView):
     model = TrainingNote
     paginate_by = 10
@@ -18,6 +19,8 @@ class IndexView(generic.ListView):
                 Q(text__icontains=keyword) | Q(news__icontains=keyword)
             )
         return queryset
+
+
 class DetailView(generic.DetailView):
     model = TrainingNote
 
@@ -26,11 +29,9 @@ class CommentView(generic.CreateView):
     model = Comment
     form_class = CommentCreateForm
 
-
     def form_valid(self, form):
-        trainingnote_pk = self.kwargs['trainingnote_pk']
+        post_pk = self.kwargs['post_pk']
         comment = form.save(commit=False)
-        comment.post = get_object_or_404(TrainingNote, pk=trainingnote_pk)
+        comment.post = get_object_or_404(TrainingNote, pk=post_pk)
         comment.save()
-        return redirect('trainingnote:detail', pk=trainingnote_pk)
-
+        return redirect('trainingnote:detail', pk=post_pk)

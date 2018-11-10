@@ -1,5 +1,6 @@
-from django.db import models
+from django.db import models,IntegrityError
 from django.utils import timezone
+
 
 
 class TrainingNote(models.Model):
@@ -11,11 +12,11 @@ class TrainingNote(models.Model):
 
 
 class Comment(models.Model):
-    """trainingnoteのコメンt"""
+    """練習ノートへのコメント"""
 
-    name = models.CharField('コメント者',max_length=30, default="コーチ")
+    name = models.CharField('名前', max_length=30, default='名無し')
     text = models.TextField('本文')
-    trainingnote = models.ForeignKey(TrainingNote, verbose_name='紐づく投稿', on_delete=models.PROTECT)
+    post = models.ForeignKey(TrainingNote, verbose_name='紐づく記事', on_delete=models.PROTECT)
     created_at = models.DateTimeField('作成日', default=timezone.now)
 
     def __str__(self):
