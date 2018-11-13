@@ -1,0 +1,16 @@
+{% extends 'expeditionreport/base.html' %}
+
+{% block content %}
+    {% for expeditionreport in expeditionreport_list %}
+        <div class="card mb-3">
+            <h2 class="card-header bg-dark text-white">{{ expeditionreport.title }}</h2>
+            <div class="card-body">
+                <p>{{ expeditionreport.created_at }}</p>
+                <a href="{% url 'expeditionreport:detail' expeditionreport.pk %}" class="btn btn-dark">続きを読む</a>
+            </div>
+        </div>
+    {% endfor %}
+
+    {% include 'expeditionreport/page.html' %}
+
+{% endblock %}

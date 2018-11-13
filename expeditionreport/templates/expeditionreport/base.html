@@ -32,14 +32,17 @@
         </div>
     </nav>
     <div class="jumbotron">
-        <h1 class="display-">インラインスピードスケート日本代表・強化選手</h1>
-        <p class="lead">練習ノート・遠征報告書をこちらで提出してください。
+        <h1 class="display-">遠征報告書提出ページ</h1>
+        <p class="lead">
+            遠征報告書(PDF形式)をこちらで提出してください。<br>
+            再提出の際は「○度目再提出」と記述の上提出してください。<br>
+            自分の提出したリストに再提出の有無をコメントします。各自確認してください。
         </p>
         <hr class="my-2">
         <p class="lead">
             {% if user.is_authenticated %}
-                <h4>ログイン中のユーザー: <strong>{{ user.get_username }}</strong>さん</h4>
-                <p>お知らせページの投稿はAdminページからのみとなっています。</p>
+                <p>ログイン中のユーザー: <strong>{{ user.get_username }}</strong>さん</p>
+                <a class="btn btn-primary btn-lg" href="{% url 'expeditionreport:submission' %}">投稿ページへ</a>
             {% else %}
                 <p>こちらからログインしてください</p>
                 <a class="btn btn-primary btn-lg" href="{% url 'admin:index' %}" role="button">ログイン</a>
@@ -63,8 +66,9 @@
             <div class="col-md-2">
                 <ul class="list-group">
                     <li class="list-group-item bg-dark text-white">カテゴリ一覧</li>
-                    <li class="list-group-item"><a href="{% url 'trainingnote:index' %}">trainingnote</a></li>
-                    <li class="list-group-item"><a href="{% url 'expeditionreport:index' %}">expedition_report</a></li>
+                    <li class="list-group-item"><a href="{% url 'trainingnote:index' %}">training</a></li>
+                    <li class="list-group-item"><a href="{% url 'expeditionreport:index' %}">expeditionreport</a></li>
+
                 </ul>
             </div>
         </div>

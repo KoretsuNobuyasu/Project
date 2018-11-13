@@ -1,0 +1,13 @@
+{% extends 'expeditionreport/base.html' %}
+
+{% block content %}
+    <div class="card mb-3">
+        <h2 class="card-header bg-dark text-white">{{ expeditionreport.title }}</h2>
+        <div class="card-body">
+            <p>{{ expeditionreport.created_at }}</p>
+             <a href="{% url 'expeditionreport:index' expeditionreport.pk %}">
+            {{ expeditionreport.text | linebreaksbr}}
+        </div>
+    </div>
+    <h4><strong>コメント一覧</strong></h4>
+{% endblock %}
