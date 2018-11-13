@@ -5,9 +5,16 @@
         <div class="card mb-3">
             <h2 class="card-header bg-dark text-white">{{ trainingnote.title }}</h2>
             <div class="card-body">
-                <p>{{ trainingnote.created_at }}}</p>
-                {{ trainingnote.text | linebreaksbr}}<br>
-                <a href="{% url 'trainingnote:detail' trainingnote.pk %}" class="btn btn-dark">続きを読む</a>
+                <p>{{ trainingnote.created_at }}</p>
+                {% if user.is_authenticated %}
+                    {% if user.is_staff %}
+                        <a href="{% url 'trainingnote:detail' trainingnote.pk %}" class="btn btn-dark">続きを読む</a>
+                    {% else %}
+                        <p>他人の練習ノートは閲覧できません。</p>
+                    {% endif %}
+                {% else %}
+                    <strong><a href="{% url 'admin:index' %}">閲覧にはログインが必要です。</a></strong>
+                {% endif %}
             </div>
         </div>
     {% endfor %}

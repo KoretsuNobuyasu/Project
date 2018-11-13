@@ -2,8 +2,9 @@ from django.db.models import Q
 from django.shortcuts import get_object_or_404, redirect
 from django.views import generic
 from django.urls import reverse_lazy
-from .forms import CommentCreateForm
+from .forms import CommentCreateForm, TrainingnoteCreateForm
 from .models import TrainingNote,Comment
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 
@@ -25,13 +26,29 @@ class DetailView(generic.DetailView):
     model = TrainingNote
 
 
-class CommentView(generic.CreateView):
+class CommentView(LoginRequiredMixin,generic.CreateView):
+    login_url = '/admin'
+    redirect_field_name = 'redirect_to'
     model = Comment
     form_class = CommentCreateForm
 
     def form_valid(self, form):
-        post_pk = self.kwargs['post_pk']
+        trainingnote_pk = self.kwargs['trainingnote_pk']
         comment = form.save(commit=False)
-        comment.post = get_object_or_404(TrainingNote, pk=post_pk)
+        comment.post = get_object_or_404(TrainingNote, pk=trainingnote_pk)
         comment.save()
-        return redirect('trainingnote:detail', pk=post_pk)
+        return redirect('trainingnote:detail', pk=trainingnote_pk)
+
+
+class SubmissionView(LoginRequiredMixin,generic.CreateView):
+    login_url = '/admin'
+    redirect_field_name = 'redirect_to'
+    model = TrainingNote
+    form_class = TrainingnoteCreateForm
+
+    def form_valid(self, form):
+        self.object = None
+        note = form.save(commit=False)
+        #note.post = get_object_or_404(TrainingNote)
+        note.save()
+        return redirect('trainingnote:index')
